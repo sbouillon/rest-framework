@@ -14,10 +14,11 @@ class PagedCollection(BaseModel, Generic[T]):
         int,
         Field(
             ...,
-            desciption="Count of items into the system.\n "
-            "Replaces the total field which is deprecated",
-            validation_alias=AliasChoices("count", "total"),
-        ),
+            json_schema_extra={
+                'description': "Count of items into the system.\\nReplaces the total field which is deprecated",
+                'validation_alias': AliasChoices("count", "total")
+            }
+        )
     ]
     items: List[T]
 
